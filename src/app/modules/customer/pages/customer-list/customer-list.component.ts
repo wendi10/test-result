@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 
 import { GET_CUSTOMER_LIST } from 'src/app/shared/consts/api.const';
+import { FILTER } from 'src/app/shared/consts/localStorage.const';
 import { IPagination } from 'src/app/shared/models/pagination.model';
 import { ICustomer } from '../../customer.model';
 
@@ -23,11 +24,16 @@ export class CustomerListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.filter = {limit: 25, page: 1}
+    const localStorageData = localStorage.getItem(FILTER)
+    console.log(localStorageData);
+    
+    this.filter = localStorageData ? JSON.parse(localStorageData) : {limit: 25, page: 1}
     this.fetchCustomerList();
   }
 
   public fetchCustomerList(): void {
+    console.log(this.filter);
+    
     this.http.getDataWithToken(GET_CUSTOMER_LIST, this.filter).subscribe(resp => {
       this.customerList = resp.data ? resp.data : [];
       this.pagination = {
@@ -44,7 +50,7 @@ export class CustomerListComponent implements OnInit {
   }
 
   public onSelectPage(page: number): void {
-    this.filter = {limit: 25, page}
+    this.filter = {...this.filter, page}
     this.fetchCustomerList()
   }
 

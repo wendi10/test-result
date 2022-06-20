@@ -23,6 +23,12 @@ export class LoginComponent {
 
   public handleLogin(): void {
     const requestBody = this.formGroup.getRawValue();
+
+    if(this.formGroup.invalid){
+      this.formGroup.markAllAsTouched();
+      return;
+    }
+
     this.http.postData(LOGIN, requestBody).subscribe((resp) => {
       this.storageService.setSessionToken(resp)
       this.router.navigate(['./customer']);
