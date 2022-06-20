@@ -1,0 +1,83 @@
+<div class="CreateCustomer">
+    <h1 class="CreateCustomer-title">Create Customer</h1>
+
+    <form [formGroup]="formGroup">
+        <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" type="text" placeholder="Input Username">
+            <mat-error>Username must be filled!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="first_name" type="text" placeholder="Input First Name">
+            <mat-error>First Name must be filled!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="last_name" type="text" placeholder="Input Last Name">
+            <mat-error>Last Name must be filled!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" placeholder="Input Email">
+            <mat-error *ngIf="formGroup?.get('email')?.hasError('required')">Email must be filled!</mat-error>      
+            <mat-error *ngIf="formGroup?.get('email')?.hasError('pattern')">
+                Please enter a valid email address
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Choose a Birth Date</mat-label>
+            <input [max]="currentDate" matInput formControlName="birth_date" [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>Birth Date must be filled!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Basic Salary</mat-label>
+            <input matInput formControlName="basic_salary" type="text" pattern="^[0-9]*$" placeholder="Input Basic Salary">
+            <mat-error *ngIf="formGroup?.get('basic_salary')?.hasError('required')">Basic Salary must be filled!</mat-error>
+            <mat-error *ngIf="formGroup?.get('basic_salary')?.hasError('pattern')">
+                Please enter a number
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+                <mat-option value="aktif">Aktif</mat-option>
+                <mat-option value="tidak aktif">Tidak aktif</mat-option>
+            </mat-select>
+            <mat-error>Status must be filled!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Group</mat-label>
+            <mat-select formControlName="group">
+                <mat-option *ngFor="let value of groupOptions" [value]="value">{{ value }}</mat-option>
+            </mat-select>
+            <mat-error>Group must be filled!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Choose Description</mat-label>
+            <input matInput formControlName="description" [matDatepicker]="desc">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="desc">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #desc></mat-datepicker>
+            <mat-error>Description must be filled!</mat-error>
+        </mat-form-field>
+
+        <button (click)="handleCreateCustomer()" type="button" class="CreateCustomer-button mb-3" mat-raised-button color="primary">Create Customer</button>
+        <button (click)="redirectToCustomerList()" type="button" class="CreateCustomer-button" mat-raised-button>Cancel</button>
+    </form>
+</div>

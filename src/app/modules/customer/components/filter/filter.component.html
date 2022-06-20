@@ -1,0 +1,31 @@
+<div class="d-flex">
+    <form [formGroup]="formGroup" class="filterAgentForm">
+        <mat-form-field >
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="search" type="text" placeholder="Search">
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+                <mat-option value="aktif">Aktif</mat-option>
+                <mat-option value="tidak aktif">Tidak aktif</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Limit</mat-label>
+            <input matInput formControlName="limit" type="text" placeholder="Search">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Order By</mat-label>
+            <mat-select formControlName="orderBy">
+                <mat-option value="ASC">Ascending</mat-option>
+                <mat-option value="DESC">Descending</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button (click)="fetchFilter()" mat-raised-button color="primary">Filter</button>
+    </form>
+</div>

@@ -1,0 +1,32 @@
+<h1>Customer Detail</h1>
+
+<div *ngIf="detailCustomer" class="detail-container">
+    <div class="column1">Username</div>
+    <div class="column2">: {{ setDisplayDetail(detailCustomer?.username) }}</div>
+
+    <div class="column1">First Name</div>
+    <div class="column2">: {{ setDisplayDetail(detailCustomer?.first_name) }}</div>
+
+    <div class="column1">Last Name</div>
+    <div class="column2">: {{ setDisplayDetail(detailCustomer?.last_name) }}</div>
+
+    <div class="column1">Email</div>
+    <div class="column2">: {{ setDisplayDetail(detailCustomer?.email) }}</div>
+
+    <div class="column1">Birth Date</div>
+    <div class="column2">: {{ detailCustomer?.birth_date  | date }}</div>
+
+    <div class="column1">Basic Salary</div>
+    <div class="column2">: {{ detailCustomer?.basic_salary | currency:"Rp " }}</div>
+
+    <div class="column1">Status</div>
+    <div class="column2">: {{ setDisplayDetail(detailCustomer?.status) }}</div>
+
+    <div class="column1">Group</div>
+    <div class="column2">: {{ setDisplayDetail(detailCustomer?.group) }}</div>
+
+    <div class="column1">Description</div>
+    <div class="column2">: {{ detailCustomer?.description | date }}</div>
+</div>
+
+<button (click)="redirectToList()" type="button" class="mt-3 mb-3" mat-raised-button>Back to Detail</button>

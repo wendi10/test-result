@@ -1,0 +1,29 @@
+<div class="d-flex mt-1rem mb-3">
+	<div *ngIf="pagination" class="pagination rounded-box">
+		<button mat-button
+			(click)="emitDataPage(pagination.page -1)"
+			[disabled]="pagination.page <= 1"
+			class="page-button-action page-button-style">
+			<mat-icon style="color: #3238be"
+				[ngClass]="{'disable-chevron': +pagination.page <= 1}">chevron_left </mat-icon>
+		</button>
+
+		<span *ngFor="let page of updatePagination(pagination.totalPage, pagination.page)">
+			<button class="btn"
+				(click)="emitDataPage(page.value)">
+				<div [ngClass]="{ 'active-page': +page.value === pagination.page }">
+					{{ page.text }}
+				</div>
+			</button>
+		</span>
+
+		<button mat-button
+			(click)="emitDataPage(pagination.page +1)"
+			[disabled]="pagination.page >= pagination.totalPage"
+			class="page-button-action page-button-style">
+			<mat-icon style="color: #3238be"
+				[ngClass]="{'disable-chevron': +pagination.page >= pagination.totalPage}">chevron_right
+			</mat-icon>
+		</button>
+	</div>
+</div>

@@ -1,0 +1,16 @@
+.CreateCustomer{
+    margin: 50px auto;
+    width: 50%;
+    &-title{
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    &-button{
+        width: 100%;
+    }
+
+    mat-form-field{
+        width: 100%;
+    }
+}
